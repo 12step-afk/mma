@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const ZOOM_LINK = "https://zoom.us/j/349786148?pwd=008895";
@@ -7,7 +7,13 @@ const ZOOM_LINK = "https://zoom.us/j/349786148?pwd=008895";
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [litTab, setLitTab] = useState("readings");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [zoom, setZoom] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState(0);
 
+  const dragStart = useRef({ x: 0, y: 0 });
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
@@ -55,7 +61,7 @@ export default function Home() {
       <section className="hero">
         <div className="hero-img-side">
           <img
-            src="/hero.png"
+            src="/hero.webp"
             alt="Mature woman"
           />
 
@@ -168,7 +174,7 @@ export default function Home() {
           <div className="why-visual reveal" style={{ position: "relative" }}>
             <div className="why-main-img">
               <img
-                src="/mmahero.png"
+                src="/mmahero.webp"
                 alt="Mature woman in reflection"
               />
             </div>
@@ -303,7 +309,7 @@ export default function Home() {
               <div className="lit-window-tabs">
                 {[
                   { key: "readings", label: "Meeting Readings" },
-                  { key: "books",    label: "Books" },
+                  { key: "books", label: "Books" },
                   { key: "resources", label: "Resources" },
                 ].map(({ key, label }) => (
                   <button
@@ -316,22 +322,104 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="lit-tab-content">
-                {litTab === "readings" && [
-                  { title: "The MA Preamble", desc: "A brief statement read at the opening of every MA meeting to welcome all women and set the tone of the circle." },
-                  { title: "The 12 Steps of MA", desc: "The guiding principles of Menopause Anonymous — a structured path through acceptance, healing, and personal growth." },
-                  { title: "How It Works", desc: "A reading that explains the foundation of the MA program and what women can expect from participating in the circle." },
-                  { title: "The Promises of MA", desc: "Affirmations of what becomes possible when women commit to the MA program and support one another honestly." },
-                ].map((item, i) => (
-                  <div className="lit-item" key={item.title}>
-                    <div className="lit-item-num">{i + 1}</div>
-                    <div>
-                      <div className="lit-item-title">{item.title}</div>
-                      <div className="lit-item-desc">{item.desc}</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="lit-tab-content ">
+                {litTab === "readings" &&
+                  [
+                    {
+                      title: "The MA READINGS",
+                      img: "/reading.jpg",
+                      desc: "A set of 12 readings that guide the themes of our meetings and provide a framework for understanding our experiences.",
+                    },
+                    {
+                      title: "The MA Preamble",
+                      img: "/preamble.jpg",
+                      desc: "A brief statement read at the opening of every MA meeting to welcome all women and set the tone of the circle.",
+                    },
+                    {
+                      title: "The 12 Steps of MA",
+                      img: "/12steps.jpg",
+                      desc: "The guiding principles of Menopause Anonymous — a structured path through acceptance, healing, and personal growth.",
+                    },
+                    {
+                      title: "MA 12 Cornerstone",
+                      img: "/12cornerstones.webp",
+                      desc: "The foundational pillars that support our community structure, ensuring a safe, respectful, and enduring space for all members.",
+                    },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className={`rounded-xl border bg-white overflow-hidden transition-all duration-300 ${openAccordion === i ? "border-[#e8bfab]" : "border-[#e8d7c8]"
+                        }`}
+                    >
+                      {/* Header */}
+                      <button
+                        onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
+                        className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#fff8f6] transition-colors"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div
+                            className={`min-w-9 w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300 ${openAccordion === i
+                                ? "bg-[#7d2948] text-white"
+                                : "bg-[#fdf0ea] text-[#7d2948]"
+                              }`}
+                          >
+                            {i + 1}
+                          </div>
+                          <h3 className="text-[15px] font-medium text-[#3d1124] leading-snug">
+                            {item.title}
+                          </h3>
+                        </div>
 
+                        <svg
+                          className={`w-4 h-4 text-[#7d2948] flex-shrink-0 transition-transform duration-300 ${openAccordion === i ? "rotate-180" : "rotate-0"
+                            }`}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </button>
+
+                      {/* Divider */}
+                      <div
+                        className={`mx-5 transition-colors duration-300 ${openAccordion === i ? "h-px bg-[#e8bfab]" : "h-px bg-[#f3e3d7]"
+                          }`}
+                      />
+
+                      {/* Content — grid trick for smooth height animation */}
+                      <div
+                        className={`grid transition-all  duration-350 ease-in-out ${openAccordion === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                          }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="pl-[68px] pr-5 pb-5 pt-3">
+                            <p className="text-sm text-[#8a6d74] leading-7 max-w-xl">
+                              {item.desc}
+                            </p>
+
+                            {item.img && (
+                              <div className="mt-4">
+                                <img
+                                  src={item.img}
+                                  alt={item.title}
+                                  className="w-full rounded-xl border border-[#e8d7c8] cursor-pointer hover:scale-[1.01] transition-transform duration-300"
+                                  onClick={() => {
+                                    setSelectedImage(item.img);
+                                    setZoom(1);
+                                    setPosition({ x: 0, y: 0 });
+                                  }}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 {litTab === "books" && [
                   { title: "The MA Step Working Journal", desc: "The official companion journal for working through all 12 steps of Menopause Anonymous. Available on Amazon.", link: "https://www.amazon.com/s?k=menopause+anonymous+step+working+journal", linkLabel: "Find on Amazon" },
                   { title: "More Titles Coming Soon", desc: "Additional recommended reading for women navigating the menopause transition will be listed here." },
@@ -447,7 +535,7 @@ export default function Home() {
           </div>
           <div className="values-visual reveal d2" style={{ position: "relative" }}>
             <div className="val-main-img">
-              <Image src="/MMA.png" alt="Background" width={600} height={560} style={{ width: "100%", height: 560, objectFit: "cover", objectPosition: "center", display: "block" }} />
+              <Image src="/MMAX.png" alt="Background" width={600} height={560} style={{ width: "100%", height: 560, objectFit: "cover", objectPosition: "center", display: "block" }} />
             </div>
             <div className="val-float">
               <div className="val-float-label">Our Commitment</div>
@@ -464,9 +552,9 @@ export default function Home() {
       <section className="cta-section">
         <div style={{ position: "absolute", inset: 0 }}>
           <img
-            src="/mmaImg.png"
+            src="/logo2.jpeg"
             alt="Pink roses"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
           />
           <div className="cta-overlay" />
         </div>
@@ -519,6 +607,84 @@ export default function Home() {
           <div className="fheart">♥ Women Supporting Women ♥</div>
         </div>
       </footer>
+      {/* Fullscreen Popup */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/95 z-[9999] overflow-hidden"
+          onMouseMove={(e) => {
+            if (!dragging) return;
+
+            setPosition({
+              x: e.clientX - dragStart.current.x,
+              y: e.clientY - dragStart.current.y,
+            });
+          }}
+          onMouseUp={() => setDragging(false)}
+          onClick={() => setSelectedImage(null)}
+        >
+          {/* Controls */}
+          <div className="absolute top-5 right-5 flex gap-3 z-20">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom((prev) => Math.max(prev - 0.2, 1));
+              }}
+              className="w-10 h-10 bg-white rounded-full text-2xl"
+            >
+              −
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom((prev) => Math.min(prev + 0.2, 5));
+              }}
+              className="w-10 h-10 bg-white rounded-full text-2xl"
+            >
+              +
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
+              className="w-10 h-10 bg-red-500 text-white rounded-full text-2xl"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Image */}
+          <div className="w-full h-full flex items-center justify-center overflow-hidden">
+            <img
+              src={selectedImage}
+              alt="preview"
+              draggable={false}
+              onClick={(e) => e.stopPropagation()}
+              onMouseDown={(e) => {
+                setDragging(true);
+
+                dragStart.current = {
+                  x: e.clientX - position.x,
+                  y: e.clientY - position.y,
+                };
+              }}
+              className={`select-none ${dragging ? "cursor-grabbing" : "cursor-grab"
+                }`}
+              style={{
+                transform: `
+            translate(${position.x}px, ${position.y}px)
+            scale(${zoom})
+          `,
+                transition: dragging ? "none" : "transform 0.2s ease",
+                maxWidth: "90%",
+                maxHeight: "90%",
+              }}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
