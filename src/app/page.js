@@ -293,7 +293,7 @@ export default function Home() {
               </p>
               <a
                 className="lit-journal-btn"
-                href="https://www.amazon.com/s?k=menopause+anonymous+step+working+journal"
+                href="https://www.amazon.com/dp/B0H23J8G6K?psc=1&ref_=cm_sw_r_cp_ud_ct_Q5FCKK4TN23PWXF3PNK2"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -332,7 +332,7 @@ export default function Home() {
                     },
                     {
                       title: "The MA Preamble",
-                      img: "/preamble.jpg",
+                      img: "/Preamble.jpg",
                       desc: "A brief statement read at the opening of every MA meeting to welcome all women and set the tone of the circle.",
                     },
                     {
@@ -359,8 +359,8 @@ export default function Home() {
                         <div className="flex items-center gap-4">
                           <div
                             className={`min-w-9 w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300 ${openAccordion === i
-                                ? "bg-[#7d2948] text-white"
-                                : "bg-[#fdf0ea] text-[#7d2948]"
+                              ? "bg-[#7d2948] text-white"
+                              : "bg-[#fdf0ea] text-[#7d2948]"
                               }`}
                           >
                             {i + 1}
@@ -421,7 +421,7 @@ export default function Home() {
                     </div>
                   ))}
                 {litTab === "books" && [
-                  { title: "The MA Step Working Journal", desc: "The official companion journal for working through all 12 steps of Menopause Anonymous. Available on Amazon.", link: "https://www.amazon.com/s?k=menopause+anonymous+step+working+journal", linkLabel: "Find on Amazon" },
+                  { title: "The MA Step Working Journal", desc: "The official companion journal for working through all 12 steps of Menopause Anonymous. Available on Amazon.", link: "https://www.amazon.com/dp/B0H23J8G6K?psc=1&ref_=cm_sw_r_cp_ud_ct_Q5FCKK4TN23PWXF3PNK2", linkLabel: "Find on Amazon" },
                   { title: "More Titles Coming Soon", desc: "Additional recommended reading for women navigating the menopause transition will be listed here." },
                 ].map((item, i) => (
                   <div className="lit-item" key={item.title}>
