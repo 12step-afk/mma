@@ -86,7 +86,7 @@ export default function Home() {
           </div>
           <div className="hero-btns reveal d3">
             <a className="btn-fill" href="#meetings">Find a Meeting</a>
-            <a className="btn-line" href="#what-is-ma">Learn About MA</a>
+            <a className="btn-line" href="mailto:12step@maanonymous.org">Learn About MA</a>
           </div>
           <div className="hero-stats reveal d4">
             <div className="hstat"><span className="hstat-num">Free</span><span className="hstat-lbl">Always</span></div>
@@ -571,7 +571,7 @@ export default function Home() {
           <p className="cta-sub reveal d2">Come as you are. Leave feeling supported. Step into your power.</p>
           <div className="cta-btns reveal d3">
             <a className="cta-btn-w" href="#meetings">Find a Meeting</a>
-            <a className="cta-btn-o" href="#what-is-ma">Learn More About MA</a>
+            <a className="btn-line" href="mailto:12step@maanonymous.org">Learn About MA</a>
           </div>
         </div>
       </section>
@@ -585,6 +585,7 @@ export default function Home() {
           </div>
           <div className="footer-col">
             <div className="footer-col-h">Quick Links</div>
+            <a href="mailto:12step@maanonymous.org">12step@maanonymous.org</a>
             <a href="#what-is-ma">What is MA?</a>
             <a href="#why-ma">Why MA Exists</a>
             <a href="#what-we-offer">What We Offer</a>
