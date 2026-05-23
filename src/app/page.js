@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const ZOOM_LINK = "https://zoom.us/j/349786148?pwd=008895";
+const ZOOM_LINK = "https://us05web.zoom.us/j/81214117226?pwd=DhM5V2odLlybVUvWP7uAkkMZ2dPxsN";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -442,7 +442,7 @@ export default function Home() {
                 ))}
 
                 {litTab === "resources" && [
-                  { title: "Weekly Sunday Meeting", desc: "Every Sunday at 4:00 PM Central Time via Zoom. Meeting ID: 349 786 148 · Password: 008895.", link: ZOOM_LINK, linkLabel: "Join on Zoom" },
+                  { title: "Weekly Sunday Meeting", desc: "Every Sunday at 4:00 PM Central Time via Zoom. Meeting ID: 812 1411 722 · Passcode: RH0Nr.", link: ZOOM_LINK, linkLabel: "Join on Zoom" },
                   { title: "MA Website", desc: "Visit MAAnonymous.org for news, updates, and more information about Menopause Anonymous.", link: "https://maanonymous.org", linkLabel: "Visit MAAnonymous.org" },
                 ].map((item, i) => (
                   <div className="lit-item" key={item.title}>
@@ -488,8 +488,8 @@ export default function Home() {
                 { label: "When", value: "Every Sunday", icon: <><rect x="3" y="4" width="18" height="18" rx="3" stroke="white" strokeWidth="2" /><path d="M16 2v4M8 2v4M3 10h18" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
                 { label: "Time", value: "4:00 PM — Central Time", icon: <><circle cx="12" cy="12" r="9" stroke="white" strokeWidth="2" /><path d="M12 7v5l3 3" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
                 { label: "Platform", value: "Zoom Online Meeting", icon: <><rect x="2" y="7" width="20" height="14" rx="3" stroke="white" strokeWidth="2" /><path d="M16 7l-4 4-4-4" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
-                { label: "Meeting ID", value: "349 786 148", icon: <><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeWidth="2" /><path d="M8 12h8M8 8h8M8 16h5" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
-                { label: "Password", value: "008895", icon: <><rect x="5" y="11" width="14" height="10" rx="2" stroke="white" strokeWidth="2" /><path d="M8 11V7a4 4 0 018 0v4" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
+                { label: "Meeting ID", value: "812 1411 722", icon: <><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeWidth="2" /><path d="M8 12h8M8 8h8M8 16h5" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
+                { label: "Passcode", value: "RH0Nr", icon: <><rect x="5" y="11" width="14" height="10" rx="2" stroke="white" strokeWidth="2" /><path d="M8 11V7a4 4 0 018 0v4" stroke="white" strokeWidth="2" strokeLinecap="round" /></> },
               ].map(({ label, value, icon }) => (
                 <div className="drow" key={label}>
                   <div className="dbox">
@@ -596,8 +596,8 @@ export default function Home() {
             <div className="footer-col-h">Join Us</div>
             <p>Every Sunday</p>
             <p>4:00 PM Central Time</p>
-            <p>Meeting ID: 349 786 148</p>
-            <p>Password: 008895</p>
+            <p>Meeting ID: 812 1411 722</p>
+            <p>Passcode: RH0Nr</p>
             <a href={ZOOM_LINK} target="_blank" rel="noopener noreferrer" style={{ color: "var(--rose-pale)", fontWeight: 600, marginTop: 6 }}>
               Join on Zoom →
             </a>
