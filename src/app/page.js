@@ -442,7 +442,7 @@ export default function Home() {
                 ))}
 
                 {litTab === "resources" && [
-                  { title: "Weekly Sunday Meeting", desc: "Every Sunday at 4:00 PM Central Time via Zoom. Meeting ID: 812 1411 722 · Passcode: RH0Nr.", link: ZOOM_LINK, linkLabel: "Join on Zoom" },
+                  { title: "Weekly Sunday Meeting", desc: "Every Sunday at 4:00 PM Central Time via Zoom. Meeting ID: 812 1411 722 · Passcode: RH0Nrt.", link: ZOOM_LINK, linkLabel: "Join on Zoom" },
                   { title: "MA Website", desc: "Visit MAAnonymous.org for news, updates, and more information about Menopause Anonymous.", link: "https://maanonymous.org", linkLabel: "Visit MAAnonymous.org" },
                 ].map((item, i) => (
                   <div className="lit-item" key={item.title}>
